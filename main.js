@@ -6,6 +6,22 @@ form.addEventListener('submit', function(event) {
     validateForm();
 });
 
+function showError(inputId, message) {
+    let inputElement = document.getElementById(inputId);
+    let errorMessage = document.createElement('div');
+    errorMessage.className = 'error';
+    errorMessage.textContent = message;
+    inputElement.parentNode.insertBefore(errorMessage, inputElement.nextSibling);
+
+}
+
+function clearErrors() {
+    let errorElements = document.querySelectorAll('.error');
+    errorElements.forEach(function(error) {
+        error.remove(); 
+    });
+}
+
 function validateForm() {
     const email = document.getElementById('email').value;
     const phone = document.getElementById('phone').value;
@@ -20,6 +36,10 @@ function validateForm() {
     const passwordPattern = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*]).{8,}$/;
     const urlPattern = /^(http|https):\/\/[^ "]+$/;
     const datePattern = /^\d{4}-\d{2}-\d{2}$/;
+
+    let isValid = true;
+
+    clearErrors();
 
     if (!emailPattern.test(email)) {
         showError('email', 'Please enter a valid email');
@@ -50,11 +70,3 @@ function validateForm() {
     return true;
 }
 
-function showError(inputId, message) {
-    let inputElement = document.getElementById(inputId);
-    let errorMessage = document.createElement('div');
-    errorMessage.className = 'error';
-    errorMessage.textContent = message;
-    inputElement.parentNode.insertBefore(errorMessage, inputElement.nextSibling);
-
-}

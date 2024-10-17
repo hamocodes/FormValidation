@@ -43,30 +43,31 @@ function validateForm() {
 
     if (!emailPattern.test(email)) {
         showError('email', 'Please enter a valid email');
-        return false;
+        isValid = false;
     }
     if (!phonePattern.test(phone)) {
         showError('phone', 'Please enter a valid phone number');
-        return false;
+        isValid = false;
     }
     if (!zipCodePattern.test(zip)) {
         showError('zip', 'Please enter a valid zip code');
-        return false;
+        isValid = false;
     }
     if (!passwordPattern.test(password)) {
         showError('password', 'Password must contain at least 8 characters including at least one number, one uppercase and one lowercase letter, and one special character');
-        return false;
+        isValid = false;
     }
     if (!urlPattern.test(url)) {
         showError('url', 'Please enter a valid URL');
-        return false;
+        isValid = false;
     }
     if (!datePattern.test(date)) {
         showError('date', 'Please enter a valid date in YYYY-MM-DD format');
-        return false;
+        isValid = false;
     }
 
-    alert('Form submitted successfully!');
-    return true;
+    if (isValid) {
+        alert('Form submitted successfully!');
+    }
 }
 
